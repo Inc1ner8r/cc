@@ -1,0 +1,236 @@
+BFS stands for Breadth-First Search. It is a graph traversal algorithm used to explore all the vertices of a graph in a breadthward motion, starting from a given source vertex.
+
+The algorithm operates by visiting vertices in layers. It starts at the source vertex, explores all of its adjacent vertices, then moves on to their adjacent vertices, and so on, until all vertices reachable from the source have been visited. This means that the algorithm visits all the vertices at distance 1 from the source, then all the vertices at distance 2, and so on, until all vertices are visited or the desired condition is met.
+
+BFS uses a queue data structure to keep track of the vertices to visit. When a vertex is visited, it is marked as "visited" to avoid revisiting it later. This ensures that the algorithm explores the graph layer by layer.
+
+BFS is often used to find the shortest path between two vertices in an unweighted graph, as it guarantees that the shortest path will be found when all edges have the same weight. Additionally, BFS is useful for solving various graph-related problems, such as finding connected components, determining bipartiteness, or detecting cycles.
+
+Overall, BFS is a fundamental algorithm for traversing and exploring graphs systematically and efficiently.
+
+The time complexity of BFS (Breadth-First Search) is O(V + E), where V is the number of vertices and E is the number of edges in the graph.
+
+In BFS, each vertex and each edge of the graph is visited once. The algorithm starts at a given source vertex and explores all the vertices reachable from it. It visits all the adjacent vertices of a vertex before moving on to their adjacent vertices. Therefore, the number of iterations required in BFS depends on the total number of vertices and edges in the graph.
+
+In the worst case scenario, BFS may visit all the vertices and edges in the graph. Hence, the time complexity is proportional to the sum of the number of vertices and the number of edges, i.e., O(V + E).
+
+It's important to note that this time complexity assumes that the graph is represented using an adjacency list or matrix, which allows for efficient access to the adjacent vertices of a given vertex. If the graph representation is different, the time complexity might vary.
+
+Algorithm of Breadth-First Search:
+Step 1: Consider the graph you want to navigate.
+Step 2: Select any vertex in your graph (say v1), from which you want to traverse the graph.
+Step 3: Utilize the following two data structures for traversing the graph.
+Visited array(size of the graph)
+Queue data structure
+Step 4: Add the starting vertex to the visited array, and afterward, you add v1’s adjacent vertices to the queue data structure.
+Step 5: Now using the FIFO concept, remove the first element from the queue, put it into the visited array, and then add the adjacent vertices of the removed element to the queue.
+Step 6: Repeat step 5 until the queue is not empty and no vertex is left to be visited.
+====================================
+DFS stands for Depth-First Search. It is another graph traversal algorithm used to explore all the vertices of a graph. Unlike BFS, DFS explores vertices in a depthward motion, moving as far as possible along each branch before backtracking.
+
+The DFS algorithm starts at a given source vertex and explores as far as possible along each branch before backtracking. It recursively visits the next unvisited adjacent vertex until all vertices have been visited or the desired condition is met. When a vertex is visited, it is marked as "visited" to avoid revisiting it later.
+
+The time complexity of DFS is also dependent on the number of vertices (V) and edges (E) in the graph. In the worst case scenario, DFS may visit all the vertices and edges in the graph.
+
+The time complexity of DFS can be expressed as O(V + E), similar to BFS. However, it's important to note that the actual traversal order may affect the performance in practice. If the graph is represented using an adjacency list or matrix, and the adjacent vertices are accessed efficiently, the time complexity remains O(V + E). However, if the adjacency structure is inefficient, such as using an adjacency matrix for a sparse graph, the time complexity could be worse.
+
+Additionally, it's worth mentioning that the time complexity assumes that the graph is not a disconnected graph. In the case of a disconnected graph, the time complexity would be O(V + E) for each connected component.
+
+In summary, the time complexity of DFS is O(V + E), where V is the number of vertices and E is the number of edges in the graph, assuming an efficient graph representation and no disconnected components.
+
+Step 1: Create a set or array to keep track of visited nodes.
+Step 2: Choose a starting node.
+Step 3: Create an empty stack and push the starting node onto the stack.
+Step 4: Mark the starting node as visited.
+Step 5: While the stack is not empty, do the following:
+Pop a node from the stack.
+Process or perform any necessary operations on the popped node.
+Get all the adjacent neighbors of the popped node.
+For each adjacent neighbor, if it has not been visited, do the following:
+Mark the neighbor as visited.
+Push the neighbor onto the stack.
+Step 6: Repeat step 5 until the stack is empty.
+=====================================
+
+The A* algorithm is a widely used pathfinding algorithm in computer science and artificial intelligence. It is used to find the shortest path between two nodes in a graph, taking into account both the cost of reaching each node and an estimate of the remaining distance to the goal node.
+
+Here's a high-level explanation of the A* algorithm:
+
+1. Initialize two lists: an open list and a closed list. The open list contains the nodes to be evaluated, and the closed list contains the nodes that have already been evaluated.
+2. Add the starting node to the open list.
+3. While the open list is not empty, do the following:
+   a. Select the node with the lowest cost from the open list. This is done based on a combination of the cost to reach the node (known as the "g-score") and the estimated distance to the goal node (known as the "h-score").
+   b. If the selected node is the goal node, the algorithm terminates and the shortest path is found.
+   c. Otherwise, for each neighbor of the selected node:
+      - Calculate the g-score of the neighbor by adding the cost to reach the selected node and the cost to move from the selected node to the neighbor.
+      - If the neighbor is already in the open list and the new g-score is lower, update its g-score and update its parent node.
+      - If the neighbor is not in the open list, calculate its h-score (estimated distance to the goal node) and add it to the open list with the calculated g-score and parent node.
+   d. Move the selected node to the closed list.
+4. If the open list becomes empty before reaching the goal node, then there is no path from the starting node to the goal node.
+
+The A* algorithm uses a heuristic function to estimate the remaining distance to the goal node. The choice of heuristic function can impact the efficiency and accuracy of the algorithm. Commonly used heuristics include the Manhattan distance, Euclidean distance, or the Dijkstra's algorithm.
+
+The A* algorithm is widely used in various applications, including pathfinding in video games, robotics, and route planning systems.
+
+Please note that the actual implementation of the A* algorithm may vary depending on the programming language and specific requirements of the problem at hand.
+
+// A* Search Algorithm
+1.  Initialize the open list
+2.  Initialize the closed list
+    put the starting node on the open 
+    list (you can leave its f at zero)
+
+3.  while the open list is not empty
+    a) find the node with the least f on 
+       the open list, call it "q"
+
+    b) pop q off the open list
+  
+    c) generate q's 8 successors and set their 
+       parents to q
+   
+    d) for each successor
+        i) if successor is the goal, stop search
+        
+        ii) else, compute both g and h for successor
+          successor.g = q.g + distance between 
+                              successor and q
+          successor.h = distance from goal to 
+          successor (This can be done using many 
+          ways, we will discuss three heuristics- 
+          Manhattan, Diagonal and Euclidean 
+          Heuristics)
+          
+          successor.f = successor.g + successor.h
+
+        iii) if a node with the same position as 
+            successor is in the OPEN list which has a 
+           lower f than successor, skip this successor
+
+        iV) if a node with the same position as 
+            successor  is in the CLOSED list which has
+            a lower f than successor, skip this successor
+            otherwise, add  the node to the open list
+     end (for loop)
+  
+    e) push q on the closed list
+    end (while loop)
+ =======================================
+ Selection sort is a simple comparison-based sorting algorithm. It works by dividing the input list into two parts: the sorted portion at the beginning and the unsorted portion at the end. The algorithm repeatedly selects the smallest (or largest) element from the unsorted portion and moves it to the sorted portion. This process is repeated until the entire list becomes sorted.
+
+Here is the step-by-step explanation of the selection sort algorithm:
+
+Start with an unsorted list of elements.
+Find the minimum (or maximum) element from the unsorted portion of the list.
+Swap the minimum (or maximum) element with the first element of the unsorted portion, effectively moving it to the sorted portion.
+Increment the boundary of the sorted portion and decrement the boundary of the unsorted portion.
+Repeat steps 2-4 until the entire list becomes sorted.
+The selection sort algorithm is not stable, which means it may change the relative order of elements with equal values. It is an in-place sorting algorithm, meaning it does not require additional memory space beyond the input list.
+
+The time complexity of selection sort is O(n^2), where n is the number of elements in the list. It performs n iterations of finding the minimum (or maximum) element and swapping it with the first element of the unsorted portion. However, it is worth noting that selection sort typically performs fewer swaps compared to other quadratic sorting algorithms like bubble sort, making it more efficient in certain situations.
+
+Lets consider the following array as an example: arr[] = {64, 25, 12, 22, 11}
+
+First pass:
+
+For the first position in the sorted array, the whole array is traversed from index 0 to 4 sequentially. The first position where 64 is stored presently, after traversing whole array it is clear that 11 is the lowest value.
+Thus, replace 64 with 11. After one iteration 11, which happens to be the least value in the array, tends to appear in the first position of the sorted list.
+
+Second Pass:
+
+For the second position, where 25 is present, again traverse the rest of the array in a sequential manner.
+After traversing, we found that 12 is the second lowest value in the array and it should appear at the second place in the array, thus swap these values.
+
+Third Pass:
+
+Now, for third place, where 25 is present again traverse the rest of the array and find the third least value present in the array.
+While traversing, 22 came out to be the third least value and it should appear at the third place in the array, thus swap 22 with element present at third position.
+
+Fourth pass:
+
+Similarly, for fourth position traverse the rest of the array and find the fourth least element in the array 
+As 25 is the 4th lowest value hence, it will place at the fourth position.
+
+Fifth Pass:
+
+At last the largest value present in the array automatically get placed at the last position in the array
+The resulted array is the sorted array.
+==============================================
+A minimum spanning tree (MST) is a subset of the edges of a connected, weighted graph that connects all the vertices together with the minimum possible total edge weight. In other words, it is a tree that spans all the vertices of the graph while minimizing the sum of the edge weights.
+
+There are multiple algorithms to find the minimum spanning tree of a graph. Two commonly used algorithms are:
+
+Prim's Algorithm:
+
+Start with an arbitrary vertex and grow the tree by adding the edge with the minimum weight connecting the tree to a vertex not yet in the tree.
+Repeat the previous step until all vertices are included in the tree.
+Kruskal's Algorithm:
+
+Sort all the edges in non-decreasing order of their weights.
+Start with an empty tree. Iterate through the sorted edges and add each edge to the tree if it does not create a cycle.
+Continue adding edges until the tree spans all the vertices.
+Both algorithms guarantee the construction of a minimum spanning tree, but they differ in their approach. Prim's algorithm grows the tree from a single vertex, while Kruskal's algorithm builds the tree by gradually adding edges.
+
+The time complexity of both Prim's algorithm and Kruskal's algorithm is generally O(E log V), where E is the number of edges and V is the number of vertices in the graph. However, the exact time complexity may vary depending on the implementation details and the data structures used to represent the graph and the edges.
+
+Minimum spanning trees have various applications, including network design, clustering, and optimization problems where finding the minimum cost is crucial while connecting all the vertices in a graph.
+========================================
+Prim's algorithm is a greedy algorithm used to find the minimum spanning tree (MST) of a weighted, connected graph. It starts with an arbitrary vertex and repeatedly adds the edge with the minimum weight that connects the current MST to a vertex not yet included in the MST. Here's a step-by-step explanation of Prim's algorithm:
+
+Initialize an empty MST and a set of visited vertices.
+Choose an arbitrary starting vertex.
+Mark the starting vertex as visited.
+Repeat steps 5 and 6 until all vertices are visited.
+Find the minimum-weight edge that connects a visited vertex to an unvisited vertex.
+Add the found edge and the unvisited vertex to the MST. Mark the new vertex as visited.
+Output the MST.
+
+The time complexity of the Prim's Algorithm is O ( ( V + E ) l o g V ) because each edge is inserted in the priority queue only once and insertion in priority queue take logarithmic time.
+==========================================
+
+Kruskal's algorithm is another greedy algorithm used to find the minimum spanning tree (MST) of a weighted, connected graph. It builds the MST by repeatedly adding the edges with the minimum weight, while ensuring that adding each edge does not create a cycle. Here's a step-by-step explanation of Kruskal's algorithm:
+
+Sort all the edges of the graph in non-decreasing order of their weights.
+Initialize an empty MST.
+Iterate through the sorted edges.
+For each edge, if adding it to the MST does not create a cycle, add it to the MST.
+Repeat step 4 until all vertices are included in the MST or all edges are considered.
+
+Time Complexity
+The time complexity of Kruskal's algorithm is O(E logE) or O(V logV), where E is the no. of edges, and V is the no. of vertices.-
+=================================================
+Prim’s Algorithm	Kruskal’s Algorithm
+It starts to build the Minimum Spanning Tree from any vertex in the graph.	It starts to build the Minimum Spanning Tree from the vertex carrying minimum weight in the graph.
+It traverses one node more than one time to get the minimum distance.	It traverses one node only once.
+Prim’s algorithm has a time complexity of O(V2), V being the number of vertices and can be improved up to O(E log V) using Fibonacci heaps.	Kruskal’s algorithm’s time complexity is O(E log V), V being the number of vertices.
+Prim’s algorithm gives connected component as well as it works only on connected graph.	Kruskal’s algorithm can generate forest(disconnected components) at any instant as well as it can work on disconnected components
+Prim’s algorithm runs faster in dense graphs.	Kruskal’s algorithm runs faster in sparse graphs.
+It generates the minimum spanning tree starting from the root vertex.	It generates the minimum spanning tree starting from the least weighted edge. 
+Applications of prim’s algorithm are Travelling Salesman Problem, Network for roads and Rail tracks connecting all the cities etc.	Applications of Kruskal algorithm are LAN connection, TV Network etc.
+Prim’s algorithm prefer list data structures.	Kruskal’s algorithm prefer heap data structures.
+===================================================
+Dijkstra's algorithm is a popular algorithm used to find the shortest path from a single source vertex to all other vertices in a weighted, directed or undirected graph. It operates by iteratively selecting the vertex with the minimum distance and updating the distances to its neighboring vertices. Here's a step-by-step explanation of Dijkstra's algorithm:
+
+Create a set of unvisited vertices and initialize their distances to infinity, except for the source vertex, which is set to 0.
+While the set of unvisited vertices is not empty:
+Select the vertex with the minimum distance from the set of unvisited vertices.
+Mark it as visited.
+For each neighboring vertex not yet visited, update its distance by considering the distance to the current vertex plus the weight of the connecting edge, if the new distance is smaller than the previous distance.
+Output the shortest distances from the source vertex to all other vertices.
+
+Dijkstra’s algorithm is very similar to Prim’s algorithm for minimum spanning tree. 
+
+Like Prim’s MST, generate a SPT (shortest path tree) with a given source as a root. Maintain two sets, one set contains vertices included in the shortest-path tree, other set includes vertices not yet included in the shortest-path tree. At every step of the algorithm, find a vertex that is in the other set (set not yet included) and has a minimum distance from the source.
+
+Follow the steps below to solve the problem:
+
+Create a set sptSet (shortest path tree set) that keeps track of vertices included in the shortest path tree, i.e., whose minimum distance from the source is calculated and finalized. Initially, this set is empty. 
+Assign a distance value to all vertices in the input graph. Initialize all distance values as INFINITE. Assign the distance value as 0 for the source vertex so that it is picked first. 
+While sptSet doesn’t include all vertices 
+Pick a vertex u that is not there in sptSet and has a minimum distance value. 
+Include u to sptSet. 
+Then update the distance value of all adjacent vertices of u. 
+To update the distance values, iterate through all adjacent vertices. 
+For every adjacent vertex v, if the sum of the distance value of u (from source) and weight of edge u-v, is less than the distance value of v, then update the distance value of v. 
+=================================================
+
