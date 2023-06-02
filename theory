@@ -234,3 +234,106 @@ To update the distance values, iterate through all adjacent vertices.
 For every adjacent vertex v, if the sum of the distance value of u (from source) and weight of edge u-v, is less than the distance value of v, then update the distance value of v. 
 =================================================
 
+A Constraint Satisfaction Problem (CSP) is a mathematical problem defined as a set of objects (variables) whose values must satisfy a set of constraints. The goal is to find values for the variables that satisfy all the constraints.
+
+In a CSP, the variables represent the unknowns or decision variables that need to be assigned values. The constraints represent the conditions or restrictions that limit the valid combinations of variable assignments.
+
+Key components of a CSP:
+
+Variables: These represent the unknowns or decision variables that need to be assigned values. Each variable typically has a domain that defines the possible values it can take.
+
+Domains: A domain is a set of possible values that a variable can take. The values in the domain should be consistent with the problem's requirements.
+
+Constraints: Constraints define the restrictions or conditions on the combinations of variable assignments. They specify the relationships between variables and restrict the valid assignments. Constraints can be unary (applying to a single variable), binary (relating two variables), or higher-order (relating more than two variables).
+
+The goal of solving a CSP is to find assignments for all variables that satisfy all the constraints simultaneously. In some cases, the objective may be to find any solution that satisfies the constraints, while in other cases, there may be specific criteria or optimization objectives involved.
+
+CSPs have a wide range of applications, including scheduling problems, planning, resource allocation, Sudoku puzzles, graph coloring, and many more. Various algorithms and techniques, such as backtracking, constraint propagation, and local search, can be used to solve CSPs efficiently and effectively, depending on the characteristics of the specific problem.
+=====================================================
+The N-Queens problem is a classical constraint satisfaction problem that involves placing N queens on an N×N chessboard such that no two queens threaten each other. In chess, a queen can move horizontally, vertically, or diagonally, attacking any piece in its path. The objective of the N-Queens problem is to find a configuration where no two queens can attack each other.
+
+More formally, the N-Queens problem can be defined as follows:
+Given an N×N chessboard, place N queens on the board such that no two queens share the same row, column, or diagonal.
+
+The challenge in solving the N-Queens problem is to find a valid configuration that satisfies all the constraints. The problem becomes more complex as N increases, as there are more possibilities and combinations to consider.
+
+Solving the N-Queens problem involves finding a solution that satisfies the constraints. There can be multiple valid solutions for a given N, and the goal is often to find all possible solutions or the total count of solutions.
+
+Several algorithms can be used to solve the N-Queens problem, including backtracking, recursive search, and constraint propagation. These algorithms systematically explore the possible configurations and eliminate invalid choices based on the constraints until a valid solution is found.
+
+The N-Queens problem is not only a challenging puzzle but also has practical applications in areas such as combinatorial optimization, constraint programming, and algorithm analysis. It serves as a well-known benchmark problem for evaluating the performance of various algorithms and techniques in constraint satisfaction and combinatorial search domains.
+======================================================
+The Graph Coloring problem is a well-known computational problem in graph theory. It involves assigning colors to the vertices of a graph such that no two adjacent vertices share the same color. The goal is to determine the minimum number of colors needed to color the graph.
+
+Formally, the Graph Coloring problem can be defined as follows:
+Given an undirected graph G = (V, E), where V represents the set of vertices and E represents the set of edges, assign colors to each vertex in V such that no two adjacent vertices have the same color.
+
+The coloring of a graph is valid if it satisfies the constraint that no adjacent vertices share the same color. The minimum number of colors required to color a graph is called the chromatic number of the graph.
+
+The Graph Coloring problem is an NP-complete problem, which means that there is no known efficient algorithm to solve it for all possible inputs. Therefore, various approximation algorithms, heuristics, and search algorithms are commonly used to find good or optimal solutions for specific instances.
+
+Graph coloring has practical applications in areas such as scheduling, register allocation in compilers, frequency assignment in wireless communication, map coloring, and resource allocation problems. It is also a fundamental problem studied in graph theory and combinatorial optimization, and many variations and extensions of the problem have been explored.
+===========================================================
+Dijkstra's algorithm is a popular algorithm used to find the shortest path between a source vertex and all other vertices in a weighted graph with non-negative edge weights. It efficiently computes the shortest distances from the source vertex to all other vertices by iteratively selecting the vertex with the smallest distance and updating the distances to its neighboring vertices.
+
+Here's a step-by-step explanation of Dijkstra's algorithm:
+
+Create a set of unvisited vertices and initialize their distances to infinity, except for the source vertex, which is set to 0.
+While the set of unvisited vertices is not empty:
+Select the vertex with the minimum distance from the set of unvisited vertices.
+Mark it as visited.
+For each neighboring vertex not yet visited, calculate the distance to that vertex through the current vertex. If it is smaller than the previously known distance, update the distance.
+Output the shortest distances from the source vertex to all other vertices.
+Dijkstra's algorithm relies on the principle of greedy selection, choosing the vertex with the smallest distance at each step. This guarantees that once a vertex is marked as visited, its distance from the source is the shortest possible.
+
+Dijkstra's algorithm uses a formula to update the distances from the source vertex to the neighboring vertices. The formula calculates the tentative distance for each neighboring vertex through the current vertex and compares it with the previously known distance. If the new distance is smaller, it updates the distance.
+
+The formula for updating the distances in Dijkstra's algorithm is as follows:
+
+distance[v] = distance[u] + weight(u, v)
+
+where:
+
+distance[v] is the tentative distance from the source vertex to vertex v,
+distance[u] is the current distance from the source vertex to the current vertex u,
+weight(u, v) is the weight of the edge between vertex u and vertex v.
+In each iteration of Dijkstra's algorithm, the formula is applied to update the distances of the neighboring vertices. If the new distance is smaller than the previously known distance, it means that a shorter path has been found, and the distance is updated. This process continues until all vertices are visited or all reachable vertices have been assigned their shortest distances from the source.
+
+By applying this formula iteratively and selecting the vertices with the smallest distances, Dijkstra's algorithm guarantees to find the shortest path from the source vertex to all other vertices in the graph.
+
+The time complexity of Dijkstra's algorithm depends on the data structures and implementation used. Here is the time complexity analysis of Dijkstra's algorithm:
+
+Building the priority queue (heap): O(V log V)
+
+In the worst case, all vertices are added to the priority queue, which takes O(V) time.
+Each insertion or deletion operation on the priority queue takes O(log V) time.
+Therefore, building the priority queue takes O(V log V) time.
+Main algorithm loop: O((V + E) log V)
+
+In each iteration, the algorithm selects the vertex with the smallest distance from the priority queue, which takes O(log V) time.
+For each neighboring vertex, the algorithm performs a distance update if necessary.
+The total number of iterations in the main loop is bounded by the number of edges, as each edge is processed at most once.
+Therefore, the overall time complexity of the main loop is O(E log V).
+Total time complexity: O((V + E) log V)
+
+In the worst case, when the graph is dense (E ≈ V^2), the time complexity of Dijkstra's algorithm can be approximated as O(V^2 log V). However, when the graph is sparse (E << V^2), the time complexity is dominated by O(E log V), which is more efficient.
+
+It's important to note that the time complexity mentioned assumes that efficient data structures such as priority queues are used to implement the algorithm. If a simple linear search is used to select the vertex with the smallest distance in each iteration, the time complexity can be worse, i.e., O(V^2 + E). Therefore, using appropriate data structures is crucial to achieving the optimal time complexity.
+===========================================================
+The Job Scheduling problem is a classic optimization problem that involves assigning a set of jobs to a set of resources or machines, subject to certain constraints and optimization objectives. The goal is to determine an optimal schedule that minimizes the total time, cost, or some other metric associated with executing the jobs.
+
+In the Job Scheduling problem, each job has a processing time or duration required to complete it, and each resource or machine has a limited capacity or availability. The problem typically involves constraints such as:
+
+Resource Constraints: Each job requires a certain amount of resources (e.g., CPU, memory, or specific skills) that must be available on the assigned machine.
+
+Precedence Constraints: Some jobs may have dependencies on other jobs and must be executed in a specific order or sequence.
+
+Deadline Constraints: Some jobs may have specific deadlines by which they must be completed.
+
+Load Balancing Constraints: The workload should be distributed evenly among the available resources or machines.
+
+The objective of the Job Scheduling problem can vary depending on the specific context and requirements. It can involve minimizing the makespan (total time required to complete all jobs), minimizing the total cost or resource utilization, maximizing the throughput, or meeting specific deadline requirements.
+
+The Job Scheduling problem is known to be an NP-hard problem, which means that finding an optimal solution is computationally challenging for large problem instances. Various algorithms and techniques, including mathematical programming, heuristics, metaheuristics, and approximation algorithms, are employed to find good or near-optimal solutions in practice.
+
+Job Scheduling problems arise in various domains such as production planning, project management, scheduling tasks on computing systems, task allocation in distributed systems, and resource allocation in cloud computing. Efficient job scheduling algorithms play a crucial role in optimizing resource utilization, improving efficiency, and meeting deadlines in these domains.
